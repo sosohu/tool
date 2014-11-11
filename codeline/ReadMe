@@ -1,0 +1,24 @@
+Explanation:
+	Code line counter shell script.
+
+How to use:
+	(1) copy the script to the /usr/bin : sudo cp codeline /usr/bin/
+	(2) set the authority for user account: sudo chmod 777 /usr/bin/codeline
+	(3) you can use codeline as a common shell command in some folder
+
+		for example, now your current path is:  /home/sosohu/project/
+			then, run the shell command:
+				sosohu@sosohu:project$ codeline
+			you will see the total nums of code line in the path:
+
+				.h file code lines are 711
+				not exsist *.c
+				.cc file code lines are 891
+				.cpp file code lines are 1
+
+				all code lines are 1603
+		
+
+Note:
+	Now, the version only supply the default file format(*.h, *.c, *.cc, *.cpp)
+in the future, I will maintenance it so that it can be set file format by user.
