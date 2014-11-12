@@ -8,7 +8,11 @@ How to use:
 
 		for example, now your current path is:  /home/sosohu/project/
 			then, run the shell command:
+
+		[i] Use default file format *.h, *.c, *.cc, *.cpp:
+
 				sosohu@sosohu:project$ codeline
+
 			you will see the total nums of code line in the path:
 
 				.h file code lines are 711
@@ -17,8 +21,19 @@ How to use:
 				.cpp file code lines are 1
 
 				all code lines are 1603
-		
+
+		[ii] Set the file format by add one or more args after the command codeline:
+
+				sosohu@sosohu:project$ codeline h cc sh
+
+			you will see the total nums of code line in the path(*.h, *.cc, *.sh):
+				
+				.h file code lines are 726
+				.cc file code lines are 927
+				.sh file code lines are 6
+
+				all code lines are 1659
 
 Note:
-	Now, the version only supply the default file format(*.h, *.c, *.cc, *.cpp)
-in the future, I will maintenance it so that it can be set file format by user.
+	Now, this version can not only supply the default file format(*.h, *.c, *.cc, *.cpp)
+but also be set file format by add the arg.
