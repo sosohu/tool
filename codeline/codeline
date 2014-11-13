@@ -1,36 +1,32 @@
-#!/bin/bash
-HOME_PATH=`pwd`
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 
-codecount()
-{
-	TYPE="."$1
-	FILE=`find $HOME_PATH -name "*$TYPE"`
-	CUR=0
-	if [ -z "$FILE" ] ; then
-		echo "not exsist *$TYPE"
-	else
-		CUR=`wc -l $FILE | tail -n 1 | awk '{print $1}'`
-		echo "$TYPE file code lines are $CUR"
-	fi
-	return $CUR
-}
+import commands
+import sys
 
-countall ()
-{
-	NUM=0
-	while [ $# -gt 0 ]
-	do
-		codecount $1
-		NUM=`expr $NUM + $?`
-		shift
-	done
-	return $NUM
-}
+cmd="pwd"
+HOME_PATH = commands.getoutput(cmd)
 
-if [ $# -gt  0 ] ; then
-	countall $@
-else
-	countall h c cc cpp
-fi
+def code_all(*args):
+	num = 0
+	for arg in args:
+		cmd = "find " + HOME_PATH + " -name \"*." + arg +"\""
+		fp = commands.getoutput(cmd)
+		cur = 0
+		if fp:
+			cmd = "wc -l `" + cmd + "` | tail -n 1 | awk \'{print $1}\'"
+			cur = int(commands.getoutput(cmd))
+			print "%s file code lines are %d" % (arg, cur)
+		else:
+			print "not exsist *.%s" % arg 
+		num = num + cur
+	return num
 
-echo -e "\nall code lines are $?"
+argc = len(sys.argv)
+total = 0
+if argc > 1:
+	total = code_all(*sys.argv[1:])
+else:
+	total = code_all(*('h', 'c', 'cc', 'cpp'))
+
+print "\nall code lines are %d" % total

@@ -1,10 +1,12 @@
 Explanation:
-	Code line counter shell script.
+	Code line counter python script.
 
 How to use:
-	(1) copy the script to the /usr/bin : sudo cp codeline /usr/bin/
-	(2) set the authority for user account: sudo chmod 777 /usr/bin/codeline
-	(3) you can use codeline as a common shell command in some folder
+	(1)	the script is the python script, run by the Python 2.7.6
+		so you should promise you have installed the python
+	(2) copy the script to the /usr/bin : sudo cp codeline /usr/bin/
+	(3) set the authority for user account: sudo chmod 777 /usr/bin/codeline
+	(4) you can use codeline as a common shell command in some folder
 
 		for example, now your current path is:  /home/sosohu/project/
 			then, run the shell command:
