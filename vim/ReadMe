@@ -1,0 +1,19 @@
+Explanation:
+	Vim configure file.
+
+How to use:
+	(1) copy the file vimrc to the /home/user/.vimrc : 
+		cp vimrc /home/user/.vimrc			# user is yout account name
+	(2)	copy the file taglist.vim to the /home/user/.vim/plugin/ :
+		cp taglist.vim /home/sosohu/.vim/plugin/
+	(2) you can use vim to open file and find some new things:
+		press F3: open/close the TlistToggle      # you must have install the ctags
+		press F4: insert the author information   # you can edir the vimrc to modify the personal information
+		support the num count
+		support the syntax height light
+		support the back to the last read place
+		set tab = 4 space
+		set search height light
+Note:
+	Now, this version can support these things above, I belive these are just elmentary feature and I will 
+continue to add new feature in the future.

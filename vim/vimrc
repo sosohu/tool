@@ -1,0 +1,112 @@
+set nu
+"do backup the file , for exmple main.c~
+set nobackup 
+set tabstop=4
+syntax enable
+"" search highlight
+set hlsearch
+" return to the position you view last time
+au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
+
+"Tlist
+"**************************************start TlistToggle***********************
+nnoremap <silent><F3> :TlistToggle<CR>
+"let Tlist_Auto_Open=1
+let	Tlist_Exit_OnlyWindow=1
+let Tlist_Use_Right_Window=1
+let Tlist_Show_One_File=1
+"**************************************end TlistToggle***********************
+
+" for insert athuor information
+"将键盘上的F4功能键映射为添加作者信息的快捷键
+"*****************************************start Author*****************************
+map <F4> ms:call TitleDet()<cr>'s
+
+function AddTitle()
+
+    call append(0,"/*******************************************************************************")
+
+    "call append(1,"#")
+
+    call append(1," * Author :          Qinghai Hu")
+
+    "call append(3,"#")
+
+    call append(2," * Email :           ustc.sosohu@gmail.com")
+
+    "call append(5,"*")
+
+    call append(3," * Last modified :   ".strftime("%Y-%m-%d %H:%M"))
+
+    "call append(7,"#")
+
+    call append(4," * Filename :        ".expand("%:t"))
+
+    "call append(9,"#")
+
+    call append(5," * Description :     This program is free software, you can redistribute it and/or")
+
+	call append(6,"                     modify it under the terms of the GNU General Public License")
+
+	call append(7,"                     as published by the Free Software Foundation.")
+
+    ""call append(11,"#")
+
+    call append(8," * *****************************************************************************/")
+
+    echohl WarningMsg | echo "Successful in adding the copyright." | echohl None
+
+endf
+
+"更新最近修改时间和文件名
+
+normal m'
+
+"execute '/# *Last modified:/s@:.*$@\=strftime(":\t%Y-%m-%d %H:%M")@'
+
+normal "
+
+normal mk
+
+"execute '/# *Filename:/s@:.*$@\=":\t\t".expand("%:t")@'
+
+execute "noh"
+
+normal 'k
+
+"echohl WarningMsg | echo "\n" | echo "Successful in updating the copy right."| echohl None
+
+"endfunction
+
+ 
+
+"判断前10行代码里面，是否有Last modified这个单词，
+
+"如果没有的话，代表没有添加过作者信息，需要新添加；
+
+"如果有的话，那么只需要更新即可
+
+function TitleDet()
+
+    let n=1
+
+    while n < 10
+
+        let line = getline(n)
+
+        if line =~'^\#\s*\S*Last\smodified:\S*.*$'
+
+            call UpdateTitle()
+
+            return
+
+        endif
+
+        let n = n + 1
+
+    endwhile
+
+    call AddTitle()
+
+endfunction
+"*****************************************end Author*****************************
