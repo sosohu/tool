@@ -1,0 +1,54 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+import commands
+import sys
+import os
+import time
+
+def manage(*args):
+	PATH = ""
+	BACK = ""
+	if len(args) == 0:
+		cmd = "whoami"
+		USER = commands.getoutput(cmd)
+		PATH = "/home/" + USER + "/Download"
+		BACK = "/home/" + USER + "/backup"
+		if	not os.path.exists(PATH):
+			PATH = "/home/" + USER + "/下载"
+			if	not os.path.exists(PATH):
+				print "Can not find the download file."
+				print "Download manage job has failed."
+				return
+		if	not os.path.exists(BACK):
+			BACK = "/tmp"
+	else:
+		PATH = args[0]
+		BACK = args[1]
+	#print PATH, BACK
+	os.chdir(PATH)
+	#print commands.getoutput("pwd")
+	file_list = []
+	all_list = os.listdir(PATH)
+	for item in all_list:
+		if item.endswith(".gz") or \
+			item.endswith(".zip") or \
+			item.endswith(".bz2") or \
+			item.endswith(".tar"):
+			file_list.append(item)
+			cmd = "mv " + item + " " + BACK 
+			commands.getoutput(cmd)
+	print "Move the special format file from", PATH, "to", BACK, "."
+	print "Download manage job has be done."
+
+
+print "***********************************start**************************************"
+print time.strftime("%Y-%m-%d %H:%M:%S %Z", time.localtime(time.time()));
+print "Prepare exe the script."
+argc = len(sys.argv)
+		
+if argc > 2:
+	manage(sys.argv[1:2])
+else:
+	manage()
+print "************************************end***************************************"

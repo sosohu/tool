@@ -1,0 +1,29 @@
+Explanation:
+	Download file manage script.
+
+How to use:
+	(1) the script is the python script, run by the Python 2.7.6
+	    so you should promise you have installed the python
+	(2) copy the script to the /usr/bin : sudo cp dmanage /usr/bin/
+	(3) set the authority for user account: sudo chmod 777 /usr/bin/codeline
+	(4) you can use dmanage as a common shell command 
+
+		[i] Use default download dir and backup dir:
+
+				sosohu@sosohu:~$  dmanage
+
+				then the script will move the compress files in the default 
+				dir(/home/username/Download) to the default backup folder
+				(/home/usename/backup).
+
+
+		[ii] Set the download dir and backup dir:
+
+				sosohu@sosohu:project$ dmanage /home/mydownload /home/mybackup
+
+				then the script will move the compress files in the mydownload to 
+				the mybackup folder.
+
+
+Note:
+	Now, this version can not only supply the default file format(*.gz, *.bz2, *.zip, *.tar)
